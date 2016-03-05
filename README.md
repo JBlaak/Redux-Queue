@@ -56,7 +56,7 @@ function doSomething() {
         
         setTimeout(() => {
             dispatch({
-                type: MY_ACTION_SUCCESS,
+                type: MY_ACTION_ERROR,
                 queued: true,
                 parent: action
             });
