@@ -56,7 +56,7 @@ function doSomething() {
         
         setTimeout(() => {
             dispatch({
-                type: MY_ACTION_ERROR,
+                type: MY_ACTION_SUCCESS,
                 queued: true,
                 parent: action
             });
@@ -81,7 +81,7 @@ function doSomething() {
         
         setTimeout(() => {
             dispatch({
-                type: MY_ACTION_SUCCESS,
+                type: MY_ACTION_FAILED,
                 queued: true,
                 failed: true
                 parent: action
