@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import expect from 'expect.js';
 
 import Queued from '../lib/queue.js';
