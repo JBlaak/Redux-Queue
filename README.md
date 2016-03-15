@@ -5,8 +5,6 @@ Redux-Queue
 
 Higher order reducer to easily cope with async actions.
 
-Note! This still is in active development!
-
 Example
 ----
 
