@@ -2,6 +2,11 @@
   "name": "redux-queue",
   "version": "0.1.0",
   "description": "Library to handle queued requests with ease in your Redux application",
+  "homepage": "https://github.com/JBlaak/Redux-Queue/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JBlaak/Redux-Queue.git"
+  },
   "main": "lib/queue.js",
   "scripts": {
     "prepublish": "babel src --out-dir lib",
