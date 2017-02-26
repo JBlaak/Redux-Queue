@@ -3,7 +3,51 @@ Redux-Queue
 
 [![Build Status](https://travis-ci.org/JBlaak/Redux-Queue.svg?branch=master)](https://travis-ci.org/JBlaak/Redux-Queue)
 
-Higher order reducer to easily cope with async actions.
+Higher order reducer so you don't have to worry about order of arrival of the results of your actions.
+
+Installation
+----
+
+Using Yarn:
+
+`yarn add redux-queue`
+
+In your `reducers.js` (or where you combine your reducers), wrap it:
+
+```javascript
+import Queue from 'redux-queue';
+import MyReducer from './my_reducer';
+
+MyReducer = Queue(MyReducer);
+
+//...pass to Redux
+````
+
+tl;dr
+----
+
+Make sure the async result of your action is always executed directly after the enthusiastic one. Add `queued: true`
+to your actions and add `parent: action` to the async result to have them execute after the first one:
+
+```javascript
+function doSomething() {
+    return dispatch => {
+        const action = {
+            type: MY_ACTION,
+            queued: true
+        };
+        dispatch(action);
+        
+        setTimeout(() => {
+            dispatch({
+                type: MY_ACTION_SUCCESS,
+                queued: true,
+                parent: action
+            });
+        }, 1000);
+    };
+}
+```
 
 Example
 ----
@@ -21,7 +65,7 @@ Ok, so if I apply my server state `a` on top of `2` this might result in weird u
  
 `1 -> a -> 2`
 
-But without having to block user interaction while w'ere syncing state with, for example, a server. This is where the
+But without having to block user interaction while we're syncing state with, for example, a server. This is where the
 Redux-Queue comes into play. 
 
 It will save all applied actions and prior states so it will always be able to "inject" the server response in between
@@ -46,7 +90,7 @@ Dispatch actions which announce they are queued (including [Redux Thunk](https:/
 ```javascript
 function doSomething() {
     return dispatch => {
-        let action = {
+        const action = {
             type: MY_ACTION,
             queued: true
         };
@@ -71,7 +115,7 @@ So what to do on failure? Here you go:
 ```javascript
 function doSomething() {
     return dispatch => {
-        let action = {
+        const action = {
             type: MY_ACTION,
             queued: true
         };
@@ -81,7 +125,7 @@ function doSomething() {
             dispatch({
                 type: MY_ACTION_FAILED,
                 queued: true,
-                failed: true
+                failed: true,
                 parent: action
             });
         }, 1000);
