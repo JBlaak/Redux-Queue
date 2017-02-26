@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import expect from 'expect.js';
 
-import Queued from '../lib/queue.js';
+import Reducer from '../lib/reducer.js';
 
 describe('Queued composer', function () {
 
@@ -17,7 +17,7 @@ describe('Queued composer', function () {
             }
             return state;
         };
-        return Queued(reducer);
+        return Reducer(reducer);
     }
 
     it('should pass through initial state', function () {

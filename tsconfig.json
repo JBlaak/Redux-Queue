@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "jsx": "react",
+    "pretty": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.promise"
+    ],
+    "outDir": "./lib"
+  },
+  "files": [
+    "./src/reducer.ts"
+  ]
+}
